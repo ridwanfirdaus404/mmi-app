@@ -1,0 +1,38 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No </th>
+            <th>Name</th>
+            <th>Tanggal Lahir</th>
+            <th>Jabatan</th>
+            <th>NIP</th>
+            <th>Jenis Kelamin</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody> 
+        <tr *ngFor = "let Employee of employees ">  
+            <td>{{ Employee.id }}</td>
+            <td>{{ Employee.name }}</td>
+            <td>{{ Employee.birthDate | date: 'longDate' }}</td>
+            <td >{{ Employee.namePosition }}</td>
+            <td>{{ Employee.idNumber }}</td>
+            <td >{{ Employee.gender == 1 ? 'Pria': 'Wanita'}}</td>
+            <td><button class="btn btn-primary" (click) = "updateEmployee(Employee.id )">Edit</button>
+                <button
+                    class="btn btn-danger"
+                    mwlConfirmationPopover
+                    [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage"
+                    placement="left"
+                    (confirm)="confirm(confirmClicked = true, Employee.id)"
+                    (cancel)="cancelClicked = true"
+
+                    >
+                    Delete
+                    </button>
+              
+            </td>
+        </tr>
+    </tbody>
+</table>
