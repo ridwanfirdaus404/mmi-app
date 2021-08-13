@@ -40,6 +40,7 @@ export class CreateEmployeeComponent implements OnInit {
     
   }
   onKlik(){
+    this.goToEmployeList();
   }
   
   
