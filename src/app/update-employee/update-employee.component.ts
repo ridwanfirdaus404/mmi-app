@@ -18,6 +18,10 @@ export class UpdateEmployeeComponent implements OnInit {
   position: Positions[];
   id: number
   empSelected: any;
+  popoverTitle = 'Konfirmasi';
+  popoverMessage = 'Aoakah anda ingin menyimpan data ini';
+  confirmClicked = false;
+  cancelClicked = false;
   constructor(private route: ActivatedRoute,private PositionService: PositionService, private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
@@ -53,9 +57,7 @@ export class UpdateEmployeeComponent implements OnInit {
     this.router.navigate(["/promise/karaywanidex"])
   }
   onSubmit(){
-    this.saveEmployee();
-    this.goToEmployeList()
-    
+    this.saveEmployee();    
   }
   onKlik(){
     this.goToEmployeList();
@@ -66,5 +68,13 @@ export class UpdateEmployeeComponent implements OnInit {
     this.PositionService.getPositionList().subscribe(data => {
       this.position =data;
     })
+  }
+
+  confirm(confirmClicked: boolean){
+    this.confirmClicked = confirmClicked;
+    if(this.confirmClicked){
+      this.onSubmit();
+      this.goToEmployeList();
+    }
   }
 }
